@@ -5,9 +5,14 @@ using Microsoft.Data.SqlClient;
 namespace Blog.Repositories {
   public class UserRepository {
     
-    private SqlConnection _connection = new SqlConnection("");
+    private readonly SqlConnection _connection;
 
-    public User User(int id, string connectionString){
+    public UserRepository(SqlConnection connection)
+    { 
+       _connection = connection;
+    }
+
+    public User User(int id){
       return _connection.Get<User>(id);
     }
 
@@ -15,7 +20,7 @@ namespace Blog.Repositories {
         return  _connection.GetAll<User>();
     }
     
-    public void Create(User user, string connectionString){
+    public void Create(User user){
       _connection.Insert<User>(user);
     }
 

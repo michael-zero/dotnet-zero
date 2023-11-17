@@ -11,29 +11,41 @@ namespace ZeroDataAcesss {
 
     static void Main(string[] args){
 
-       using (var connection = new SqlConnection(CONNECTION_STRING)){
-          // ReadUser();
-          // CreateUser();
-          // UpdateUser();
-          // DeleteUser();
-          ReadUsers();
-       }   
+       var connection = new SqlConnection(CONNECTION_STRING);
+       connection.Open();
+
+        // ReadUser();
+        // CreateUser();
+        // UpdateUser();
+        // DeleteUser();
+        ReadUsers(connection);
+        ReadRoles(connection);
+        
+        connection.Close();
    
     }
 
-    public static void ReadUser(){
-      using(var connection = new SqlConnection(CONNECTION_STRING)){
-        var user = connection.Get<User>(1);
-        Console.WriteLine(user.Name);
-      }
+    public static void ReadUser(SqlConnection connection){
+      var repository = new UserRepository(connection);
+      var user = repository.User(1);
+      Console.WriteLine(user.Name);
     }
 
-    public static void ReadUsers(){
-     var repository = new UserRepository();
+    public static void ReadUsers(SqlConnection connection){
+     var repository = new UserRepository(connection);
      var users = repository.Get();
 
      foreach(var user in users){
       Console.WriteLine(user.Name);
+     }
+    }
+
+    public static void ReadRoles(SqlConnection connection){
+     var repository = new RoleRepository(connection);
+     var roles = repository.Get();
+
+     foreach(var role in roles){
+      Console.WriteLine(role.Name);
      }
     }
 
