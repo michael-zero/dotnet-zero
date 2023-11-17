@@ -1,0 +1,15 @@
+/home/michael/Documents/dotnet/primeiro/bin/Debug/net7.0/primeiro
+/home/michael/Documents/dotnet/primeiro/bin/Debug/net7.0/primeiro.deps.json
+/home/michael/Documents/dotnet/primeiro/bin/Debug/net7.0/primeiro.runtimeconfig.json
+/home/michael/Documents/dotnet/primeiro/bin/Debug/net7.0/primeiro.dll
+/home/michael/Documents/dotnet/primeiro/bin/Debug/net7.0/primeiro.pdb
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/primeiro.csproj.AssemblyReference.cache
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/primeiro.GeneratedMSBuildEditorConfig.editorconfig
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/primeiro.AssemblyInfoInputs.cache
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/primeiro.AssemblyInfo.cs
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/primeiro.csproj.CoreCompileInputs.cache
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/primeiro.dll
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/refint/primeiro.dll
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/primeiro.pdb
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/primeiro.genruntimeconfig.cache
+/home/michael/Documents/dotnet/primeiro/obj/Debug/net7.0/ref/primeiro.dll
