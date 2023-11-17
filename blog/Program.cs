@@ -32,7 +32,7 @@ namespace ZeroDataAcesss {
     }
 
     public static void ReadUsers(SqlConnection connection){
-     var repository = new UserRepository(connection);
+     var repository = new Repository<User>(connection);
      var users = repository.Get();
 
      foreach(var user in users){
