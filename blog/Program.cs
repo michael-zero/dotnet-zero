@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Blog.Models;
+using Blog.Repositories;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
@@ -14,7 +15,8 @@ namespace ZeroDataAcesss {
           // ReadUser();
           // CreateUser();
           // UpdateUser();
-          DeleteUser();
+          // DeleteUser();
+          ReadUsers();
        }   
    
     }
@@ -24,6 +26,15 @@ namespace ZeroDataAcesss {
         var user = connection.Get<User>(1);
         Console.WriteLine(user.Name);
       }
+    }
+
+    public static void ReadUsers(){
+     var repository = new UserRepository();
+     var users = repository.Get();
+
+     foreach(var user in users){
+      Console.WriteLine(user.Name);
+     }
     }
 
         private static void CreateUser()
