@@ -20,7 +20,7 @@ namespace Blog.Models
         public string Image { get; set; }
         public string Slug { get; set; }
 
-        [Write(false)] 
+        [Write(false)]  
         public List<Role> Roles { get; set; }
     }
 }

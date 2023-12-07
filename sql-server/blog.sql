@@ -4,6 +4,13 @@ GO
 USE [Blog]
 GO
 
+ SELECT
+    [User].*,
+    [Role].*
+	FROM
+		[User]
+		LEFT JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
+		LEFT JOIN [Role] ON [UserRole].[RoleId] = [Role].[Id]
 
 -- DROP TABLE [User]
 -- DROP TABLE [Role]
@@ -95,3 +102,19 @@ CREATE TABLE [PostTag] (
 INSERT INTO [USER] VALUES ('Michael Lesley', 'mlmb@zero.com','HASH', '3x bot', 'https://','michael-zero')
 
 SELECT * FROM [USER];
+
+INSERT INTO [ROLE] VALUES ('Autor','Author');
+SELECT * FROM [ROLE];
+
+
+
+INSERT INTO [Tag] VALUES ('ASP.NET','aspent');
+SELECT * FROM [Tag];
+
+
+
+INSERT INTO [UserRole] VALUES (1,1);
+
+SELECT * FROM [User];
+SELECT * FROM [Role];
+SELECT * FROM [UserRole];
