@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Shop.Models {
   public class Product {
@@ -19,7 +20,9 @@ namespace Shop.Models {
 
     [Required(ErrorMessage = "Este campo é obrigatório")]
     [Range(1, int.MaxValue, ErrorMessage = "Categoria inválida")]
-    public int CategoryId { get; set; }
-    public Category Category {get; set;}
+    public int? CategoryId { get; set; }
+    
+    [BindNever]
+    public Category? Category {get; set;}
   }
 }
