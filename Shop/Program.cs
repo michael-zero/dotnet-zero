@@ -1,13 +1,25 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Shop;
 using Shop.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// builder.Services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+var key = Encoding.ASCII.GetBytes(Settings.Secret);
 
+//autenticacao 
+builder.Services.AddAuthentication(x => {
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+});
+
+builder.Services.AddControllers();
+
+
+// builder.Services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"Connection String: {connectionString}");
 
