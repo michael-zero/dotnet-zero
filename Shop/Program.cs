@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Shop;
@@ -27,6 +28,18 @@ var key = Encoding.ASCII.GetBytes(Settings.Secret);
         };
     });
 
+
+builder.Services.AddResponseCompression(opt => {
+    opt.Providers.Add<GzipCompressionProvider>();
+    //comprime tudo que for json
+    opt.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new [] {"application/json"});
+});
+
+//cache em toda aplicação
+// builder.Services.AddResponseCaching();
+
+//cors
+builder.Services.AddCors();
 builder.Services.AddControllers();
 
 
@@ -35,13 +48,13 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 Console.WriteLine($"Connection String: {connectionString}");
 
 
-
+//banco de dados
 builder.Services.AddDbContext<DataContext>(opt => opt.
 UseSqlServer(
     builder.Configuration
     .GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<DataContext, DataContext>();
+// builder.Services.AddScoped<DataContext, DataContext>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -53,10 +66,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shop API V1");
+    });
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
 app.UseAuthentication();
 app.UseAuthorization();

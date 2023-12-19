@@ -5,12 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Shop.Data;
 using Shop.Models;
 
-[Route("categories")]
+[Route("v1/categories")]
 public class CategoryController : ControllerBase {
 
   [HttpGet]
   [Route("")]
   [AllowAnonymous]
+  [ResponseCache(VaryByHeader = "User-Agent", Location = ResponseCacheLocation.Any, Duration = 30)]
+  //desativar cache no método
+  // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
   public async Task<ActionResult<List<Category>>> Get([FromServices] DataContext context){
     var categories = await context.Categories.AsNoTracking().ToListAsync();
     return Ok(categories);

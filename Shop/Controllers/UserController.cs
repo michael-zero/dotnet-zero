@@ -34,8 +34,10 @@ public class UserController : ControllerBase {
       return BadRequest(ModelState);
     }
     try{
+      model.Role = "employee";
       context.Users.Add(model);
       await context.SaveChangesAsync();
+      model.Password = "";
       return Ok(model);
     
     }catch(Exception){
@@ -81,6 +83,7 @@ public class UserController : ControllerBase {
       }
 
       var token = TokenService.GenerateToken(user);
+      user.Password = "";
       return new {
         user = user, 
         token = token
